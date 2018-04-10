@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>游戏约玩触屏版</title>
+    <link rel="stylesheet" type="text/css" href="css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/user.css">
+</head>
+<body>
+<div class="webview">
+    <div class="scrollview">
+        <div class="top-fixed">
+            <header>
+                <a class="pull-left mui-action-back" href="signin.html"><em class="mui-icon mui-icon-back"></em>返回</a>
+                <h1 class="title">编辑资料</h1>
+            </header>
+        </div>
+        <div class="scroll-wrap" style="background: #fff;">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <div class="user-content">
+                        <ul class="mui-table-view editdata">
+                            <li class="mui-table-view-cell">
+                                <a class="mui-navigate-right" style="line-height: 60px;">
+                                    头像
+                                    <div class="editimg"><img id="imgs" src="img/bar_4_show.jpg" alt=""></div>
+                                    <input type="file" id="editimg">
+                                </a>
+                            </li>
+                            <li class="mui-table-view-cell">
+                                <a href="#setsheet" data-tab="0" id="setsheet1" class="mui-navigate-right">
+                                    昵称
+                                    <span class="mui-badge" id="viewcell_n">变化在高处</span>
+                                </a>
+                            </li>
+                            <li class="mui-table-view-cell">
+                                <a href="#setsheet" data-tab="1" id="setsheet1" class="mui-navigate-right">
+                                    性别
+                                    <span class="mui-badge" id="viewcell_s">男</span>
+                                </a>
+                            </li>
+                            <li class="mui-table-view-cell">
+                                <a href="#setsheet" data-tab="2" id="setsheet1" class="mui-navigate-right">
+                                    所在城市
+                                    <span class="mui-badge" id="viewcell_c" data-city="440100">广州市</span>
+                                </a>
+                            </li>
+                            <li class="mui-table-view-cell">
+                                <a href="#setsheet" data-tab="4" id="setsheet1" class="mui-navigate-right">
+                                    个人简介
+                                    <span class="mui-badge badge-hide" id="viewcell_j">在家也可以赚钱</span>
+                                </a>
+                            </li>
+                            <li class="mui-table-view-cell">
+                                <a href="#setsheet" data-tab="3" id="setsheet1" class="mui-navigate-right">
+                                    选择陪玩游戏
+                                    <span class="mui-badge badge-hide" id="viewcell_yx">王者荣耀</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="twobtn"><button onclick="pushdata(this)" class="mui-btn" type="button">确定</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="setsheet" class="mui-popover mui-popover-bottom mui-popover-action ">
+    <div class="router_data">
+        
+    </div>
+    <ul class="mui-table-view">
+        <li class="mui-table-view-cell" id="view-cell">
+            <a href="#setsheet" id="getdata"><b>确定</b></a>
+        </li>
+        <li class="mui-table-view-cell">
+            <a href="#setsheet" style="color: #f78787"><b>取消</b></a>
+        </li>
+    </ul>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/connom.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+mui('.mui-scroll-wrapper').scroll();
+//初始化数据
+window._gametaglist = "";
+$.ajax({
+    type:"post",
+    url:'http://admin.piu488.com/index.php?s=/Home/List/edit_show',
+    dataType:"json",
+    data:[
+        {"name":"id","value":getCookie("member_id")},
+        {"name":"token","value":getCookie("token")}
+    ],
+    success:function(result){
+        if(result.code == "2" || result.status == "no"){
+            window.location = 'http://www.jingege.com/jingege/login.html';
+        }else if(result.code == "1"){
+            var res = result[0][0];
+            res.member_img != null ? $("#imgs").attr("src",res.member_img):"";//头像
+            $("#viewcell_n").text(res.member_name);//昵称
+            $("#viewcell_s").attr("data-sex",res.sex);
+            if(res.sex == "w"){
+                $("#viewcell_s").text("女");//性别
+            }else if(res.sex == "m"){
+                $("#viewcell_s").text("男");//性别
+            }else{
+                $("#viewcell_s").text(res.sex);
+            }
+            $("#viewcell_c").text(res.ip_guishudi);//所在城市
+            $("#viewcell_j").text(res.remark);//简介
+            var _column = "";
+            for(var i in res.column){
+                _column+=res.column[i].cname+"|";
+            }
+            var basic = _column.substring(0, _column.lastIndexOf('|'));
+            $("#viewcell_yx").text(basic);
+            window._gametaglist = result[0][1];
+        }
+    }
+});
+
+//显示对应的内容模板
+$(".mui-table-view #setsheet1").on("tap",function(e){
+    var thistab = $(this).attr("data-tab");
+    $("#view-cell").show();
+    if(thistab == 0){
+        //昵称
+        var _html = '<ul id="router_sex" class="mui-table-view"><li class="mui-table-view-cell"><input id="setvalue_ip" type="text" placeholder="输入昵称"></li></ul>';
+        $(".router_data").html(_html);
+    }else if(thistab == 1){
+        //性别
+        $("#view-cell").hide();
+        var _html = '<ul id="router_sex" class="mui-table-view"><li class="mui-table-view-cell" onclick="getsex(this);" data-sex="m">男</li><li class="mui-table-view-cell" onclick="getsex(this);" data-sex="w">女</li></ul>';
+        $(".router_data").html(_html);
+    }else if(thistab == 2){
+        $("#view-cell").hide();
+        var _html = '<div class="mui-row arealist clearfix"><ul id="province" class="mui-col-xs-6 mui-table-view view_s"></ul><ul id="city" class="mui-col-xs-6 mui-table-view view_city"></ul></div>';
+        $(".router_data").html(_html);
+        getsite();
+    }else if(thistab == 3){
+        var _htmltag = "";
+        console.log(window._gametaglist);
+        for(var i in window._gametaglist){
+            _htmltag+='<li class="gametag"><img src="'+window._gametaglist[i].cimg+'" alt="" /><span class="camename">'+window._gametaglist[i].cname+'</span><input class="checkbox" value="'+window._gametaglist[i].cid+'" type="checkbox"></li>';
+        }
+        var _html = '<ul class="mui-table-view clearfix" id="gametaglist">'+_htmltag+'</ul>';
+        $(".router_data").html(_html);
+    }else if(thistab == 4){
+        //个人简介
+        var _html = '<ul id="router_sex" class="mui-table-view"><li class="mui-table-view-cell"><textarea name="textarea" id="setvalue_tx" cols="30" rows="10" placeholder="输入个人简介"></textarea></li></ul>';
+        $(".router_data").html(_html);
+    }
+});
+
+//获取省份
+function getsite(){
+    $.ajax({
+        type:"get",
+        url:'http://admin.piu488.com/index.php?s=/Home/List/provinces',
+        dataType:'json',
+        data:[
+            {"name":"id","value":getCookie("member_id")},
+            {"name":"token","value":getCookie("token")}
+        ],
+        success:function(result){
+            //城市
+            var provinceLi = "";
+            for (var i in result) {
+                provinceLi +='<li onclick="province(this);" class="mui-table-view-cell" data-id="'+result[i].id+'" data-area-s="'+result[i].provinceid+'">'+result[i].province+'</li>';
+            }
+            $("#province").html(provinceLi);
+        }
+    });
+}
+//选择省份获取对应城市
+function province(e){
+    $(e).addClass("active").siblings().removeClass("active");
+    var provinceid = $(e).attr("data-area-s");
+    $.ajax({
+        type:"post",
+        url:'http://admin.piu488.com/index.php?s=/Home/List/cities',
+        dataType:'json',
+        data:[
+            {"name":"provinceid","value":provinceid}
+        ],
+        success:function(result){
+            //城市
+            var cityLi = "";
+            for (var i in result) {
+                cityLi +='<li onclick="city(this);" class="mui-table-view-cell" data-id="'+result[i].id+'" data-area="'+result[i].cityid+'">'+result[i].city+'</li>';
+            }
+            $("#city").html(cityLi);
+        }
+    });
+}
+//选中城市
+function city(e){
+    $(e).addClass("active").siblings().removeClass("active");
+    $("#viewcell_c").text($("#city .active").text());
+    $("#viewcell_c").attr("data-city",$(e).attr("data-area"));
+    mui('#setsheet').popover('toggle');
+}
+
+//选择性别数据
+function getsex(obj){
+    $("#viewcell_s").text($(obj).text());
+    $("#viewcell_s").attr("data-sex",$(obj).attr("data-sex"));
+    mui('#setsheet').popover('toggle');
+}
+
+//选择对应的数据填充
+var columnnumber = '';
+$("#getdata").on("tap",function(){
+    var dataip = $("#setvalue_ip").val();
+    var datatx = $("#setvalue_tx").val();
+    $("#viewcell_n").text(dataip);
+    $("#viewcell_j").text(datatx);
+    var valtext = "";
+    $('#gametaglist input:checkbox[class=checkbox]:checked').each(function(k){
+        valtext+=$(this).parent().find(".camename").text()+'|';
+        if(k == 0){
+            columnnumber = $(this).val();
+        }else{
+            columnnumber += ','+$(this).val();
+        }
+    });
+    var basic = valtext.substring(0, valtext.lastIndexOf('|'));
+    $("#viewcell_yx").text(basic);
+});
+
+//修改头像
+$("#editimg").on("change",function(source){
+    var file = this.files[0];
+        //判断类型是不是图片 
+        if(!/image\/\w+/.test(file.type)){    
+            alert("请上传图像类型的文件");  
+            return false;  
+        }  
+        if(window.FileReader) {  
+            var fr = new FileReader();  
+            fr.onloadend = function(e) {
+                var file_html = e.target.result;
+                $("#imgs").attr("src",file_html);
+            };
+            fr.onprogress = function(argument) {
+                console.log(argument);
+            }
+            fr.readAsDataURL(file);  
+        }
+});
+
+//修改数据
+function pushdata(e){
+    $.ajax({
+        type:"post",
+        url:'http://admin.piu488.com/index.php?s=/Home/List/edit',
+        dataType:'json',
+        data:[
+            {"name":"id","value":getCookie("member_id")},
+            {"name":"token","value":getCookie("token")},
+            {"name":"member_name","value":$("#viewcell_n").text()},
+            {"name":"sex","value":$("#viewcell_s").attr("data-sex")},
+            {"name":"remark","value":$("#viewcell_j").text()},
+            {"name":"address","value":$("#viewcell_c").attr("data-city")},
+            {"name":"file","value":$("#imgs").attr("src")},
+            {"name":"column_id","value":columnnumber}
+        ],
+        success:function(result){
+            if(result.code == "1"){
+                mui.toast("资料修改成功!");
+                setTimeout(function(){
+                    window.location = 'http://www.jingege.com/jingege/user.html';
+                },2000);
+            }else{
+                mui.toast(result.message);
+            }
+        }
+    });
+    
+}
+</script>
+</html>

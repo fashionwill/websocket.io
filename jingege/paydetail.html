@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>游戏约玩触屏版</title>
+    <link rel="stylesheet" type="text/css" href="css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <style>
+        .module .mui-row{background: #fff;border-bottom: 1px solid #ddd;padding: 10px;}
+        .mui-col-xs-4{text-align: right;line-height: 37px;color: #ff9c00;font-size: 13px;}
+        .name{color: #333;font-size: 15px;margin-bottom: 5px;}
+    </style>
+</head>
+<body>
+<div class="webview">
+    <div class="scrollview">
+        <div class="top-fixed">
+            <header>
+                <a href="#" class="mui-action-back mui-icon mui-icon-back"></a>
+                <h1 class="title">零钱明细</h1>
+            </header>
+        </div>
+        <div class="scroll-wrap">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <ul class="module">
+                        <li class="mui-row">
+                            <div class="mui-col-xs-8">
+                                <p class="name">提现</p>
+                                <p class="time">2018-12-12 12:20:23</p>
+                            </div>
+                            <div class="mui-col-xs-4">-100</div>
+                        </li>
+                        <li class="mui-row">
+                            <div class="mui-col-xs-8">
+                                <p class="name">充值</p>
+                                <p class="time">2018-12-12 12:20:23</p>
+                            </div>
+                            <div class="mui-col-xs-4">+10</div>
+                        </li>
+                        <li class="mui-row">
+                            <div class="mui-col-xs-8">
+                                <p class="name">提现</p>
+                                <p class="time">2018-12-12 12:20:23</p>
+                            </div>
+                            <div class="mui-col-xs-4">-950</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-fxied">
+            <footer>
+                <a href="index.html" class="home">
+                  <span class="icon icon_home"></span>
+                  <p>首页</p>
+                </a>
+                <a href="fine.html" class="fine">
+                  <span class="icon icon_fine"></span>
+                  <p>热门</p>
+                </a>
+                <a href="trip.html" class="trip">
+                  <span class="icon icon_trip"></span>
+                  <p>主播</p>
+                </a>
+                <a href="user.html" class="my active">
+                  <span class="icon icon_my"></span>
+                  <p>我的</p>
+                </a>
+            </footer>
+        </div> 
+    </div>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/connom.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+mui('.mui-scroll-wrapper').scroll();
+</script>
+</html>

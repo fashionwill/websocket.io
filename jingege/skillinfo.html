@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>游戏约玩触屏版</title>
+    <link rel="stylesheet" type="text/css" href="css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <style>
+        .mui-table-view-cell:after{left: 0;}
+        .mui-table-view-cell{background: #fff;}
+        .mui-slider .mui-slider-group .mui-slider-item{height: 200px;}
+        .comment-area{position: relative;}
+        .setcomment{position: absolute;top: 10px;right: 15px;font-size: 15px;border: 1px solid #ff9c00;border-radius: 5px;}
+        .setcomment a{color: #ff9c00;display: block;padding: 0 5px 0 12px;}
+        .setcomment i{vertical-align: middle;}
+        .view-comment-form{margin: 10px;background: #fff;border-radius: 4px;}
+        .view-comment-form textarea{margin-bottom: 0;display: block;font-size: 13px;border: none;background: #efefef;}
+        .view-comment-form .msg{padding:10px;color: #333;padding-bottom: 0;}
+        .view-comment-form .mui-btn{width: 100%;font-size: 15px;color: #fff;background: #ff9c00;border: none;padding:12px;}
+        .checkbox-row .mui-checkbox{float: left;width: 33.333%;clear: initial;}
+        .checkbox-row .mui-checkbox input[type=checkbox]:checked:before,.checkbox-row .mui-checkbox input[type=checkbox]:before{color: #ff9c00}
+    </style>
+</head>
+<body>
+<div class="webview" id="webview">
+    <div class="scrollview">
+        <div class="top-fixed">
+            <header id="header" class="">
+                <a href="#" class="mui-action-back mui-icon mui-icon-back"></a>
+                <h1 class="title">技能信息</h1>
+            </header>
+        </div>
+        <div id="userinfo">
+            <!-- <div class="mui-slider">
+                <div class="mui-slider-group">
+                    <div class="mui-slider-item"><a href="#"><img src="upload/fm.jpg" /></a></div>
+                </div>
+            </div>
+            <div class="view-group">
+                <div class="group-info">
+                    <p class="g-name">王者荣耀陪练</p>
+                    <p class="g-nub">接单数次：10次</p>
+                    <div class="right">
+                        <p class="s-time"><em>￥20</em>/小时</p>
+                        <span class="s-good">好评率98%</span>
+                    </div>
+                </div>
+                <div class="group-intro">
+                    <div class="userimg"><img src="upload/pl4.jpg" alt=""></div>
+                    <div class="user-info">
+                        <p class="name">带妹一哥</p>
+                        <p class="g-info"><span>男</span><span class="map">广州</span></p>
+                        <div class="odr-nub">
+                            <a href="order.html" class="odr-bnt">下单</a>
+                            <a href="chat.html" class="chat-link"></a>
+                        </div>
+                    </div>
+                    <div class="foot-intro">
+                        简介：本人18:00-22:00在线，可按把收费，一把5元或者10元半小时。
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <div class="scroll-wrap">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <div class="comment-area">
+                        <p class="area-sum">评论(55)</p>
+                        <div class="setcomment"><a href="#setcomment">去评论<i class="mui-icon mui-icon-arrowright"></i></a></div>
+                        <ul class="mui-table-view">
+                            <!-- <li class="mui-table-view-cell mui-media">
+                                <a href="javascript:;">
+                                    <img class="mui-media-object mui-pull-left" src="upload/pl4.jpg">
+                                    <div class="mui-media-body">
+                                        幸福
+                                        <div class="mui-ellipsis">
+                                            <div class="ellipsis-grade clearfix">
+                                                <span></span>
+                                            </div>
+                                            <span class="date">12月5日</span>
+                                        </div>
+                                        <p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+                                    </div>
+                                </a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
+<div id="setcomment" class="mui-popover mui-popover-bottom mui-popover-action">
+    <div class="view-comment-form">
+        <p class="msg">请不要发布刺激性语言和违法的字眼</p>
+        <div style="padding: 10px">
+            <div class="checkbox-row mui-clearfix">
+                <div class="mui-input-row mui-checkbox">
+                    <label>1星</label>
+                    <input value="1" type="checkbox" checked>
+                </div>
+                <div class="mui-input-row mui-checkbox">
+                    <label>2星</label>
+                    <input value="2" type="checkbox" checked>
+                </div>
+                <div class="mui-input-row mui-checkbox">
+                    <label>3星</label>
+                    <input value="3" type="checkbox" checked>
+                </div>
+                <div class="mui-input-row mui-checkbox">
+                    <label>4星</label>
+                    <input value="4" type="checkbox" checked>
+                </div>
+                <div class="mui-input-row mui-checkbox">
+                    <label>5星</label>
+                    <input value="5" type="checkbox" checked>
+                </div>
+            </div>
+            <textarea placeholder="优质评论有机会展示在前排哦" name="textarea" id="textarea" cols="30" rows="4"></textarea>
+        </div>
+    </div>
+    <div class="view-comment-form"><a href="#setcomment" class="mui-btn">发布评论</a></div>
+</div>
+</body>
+
+<script src="js/mui.min.js"></script>
+<script src="js/connom.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+mui('.mui-scroll-wrapper').scroll();
+document.addEventListener('touchmove',function(event){event.preventDefault()},true);
+function timestampToTime(timestamp) {
+    var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+    Y = date.getFullYear() + '-';
+    M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+    D = date.getDate() + ' ';
+    // h = date.getHours() + ':';
+    // m = date.getMinutes() + ':';
+    // s = date.getSeconds();
+    return Y+M+D;
+    //return Y+M+D+h+m+s;
+}
+$.ajax({
+    type:"post",
+    url:'http://admin.piu488.com/index.php?s=/Home/Place/index',
+    dataType:"json",
+    data:[
+        {"name":"column_id","value":getCookie("column_id")},
+        {"name":"about_id","value":getQueryString("member_id")},
+        {"name":"token","value":getCookie("token")}
+    ],
+    success:function(result){
+        console.log(result.data);
+        var res = result.data;
+        var plhtml = "";
+        var xxsum = "";
+        if(result.code=="1"){
+            $(".area-sum").html('评论('+res.comment_count+')');
+            var sex = res.sex=="m"?"男":"女";
+            var _htmlinfo = '<div class="mui-slider">'+
+                                '<div class="mui-slider-group">'+
+                                    '<div class="mui-slider-item" style="background:url('+res.cimg+') no-repeat;background-size: cover;background-position: center;"></div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="view-group">'+
+                                '<div class="group-info">'+
+                                    '<p class="g-name">'+res.cname+'陪练</p>'+
+                                    '<p class="g-nub">接单数次：'+res.count+'次</p>'+
+                                    '<div class="right">'+
+                                        '<p class="s-time"><em>￥'+res.price+'</em>/小时</p>'+
+                                        '<span class="s-good">好评率98%</span>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="group-intro">'+
+                                    '<div class="userimg"><img src="'+res.member_img+'" alt=""></div>'+
+                                    '<div class="user-info">'+
+                                        '<p class="name">'+res.member_name+'</p>'+
+                                        '<p class="g-info"><span>'+sex+'</span><span style="padding:0 5px">/</span><span class="map">'+res.address+'</span></p>'+
+                                        '<div class="odr-nub">'+
+                                            '<a href="order.html?column_id='+res.column_id+'&member_id='+res.member_id+'" class="odr-bnt">下单</a>'+
+                                            '<a href="fine.html?column_id='+res.column_id+'&member_id='+res.member_id+'" class="chat-link"></a>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="foot-intro">简介：本人'+res.sparring_time+'在线，'+res.sparring_remarks+'</div>'+
+                                '</div>'+
+                            '</div>';
+            $("#userinfo").html(_htmlinfo);
+
+            //评论
+            for(var i in res.comment){
+                for(var j in res.comment[i].cid){
+                    xxsum+='<span></span>';
+                }
+                plhtml+='<li class="mui-table-view-cell mui-media">',
+                    plhtml+='<a href="javascript:;">',
+                        plhtml+='<img class="mui-media-object mui-pull-left" src="'+res.comment[i].member_img+'">',
+                        plhtml+='<div class="mui-media-body">'+res.comment[i].member_name+'',
+                            plhtml+='<div class="mui-ellipsis">',
+                                plhtml+='<div class="ellipsis-grade clearfix">'+xxsum+'</div>',
+                                plhtml+='<span class="date">'+timestampToTime(res.comment[i].times)+'</span>',
+                            plhtml+='</div>',
+                            plhtml+='<p class="mui-ellipsis">'+res.comment[i].content+'</p>',
+                        plhtml+='</div>',
+                    plhtml+='</a>',
+                plhtml+='</li>';
+            }
+            $(".mui-table-view").html(plhtml);
+        }else if(result.code == "2"){
+            window.location = 'http://www.jingege.com/jingege/login.html';
+        }
+    }
+});
+
+$(".view-comment-form .mui-btn").on("tap",function(){
+    if($("#textarea").val() == ""){
+        mui.toast("评论内容不能空");
+    }else{
+        $.ajax({
+            type:"post",
+            url:'http://admin.piu488.com/index.php?s=/Home/Place/publish_comment',
+            dataType:"json",
+            data:[
+                {"name":"speak_id","value":getCookie("member_id")},
+                {"name":"about_id","value":getQueryString("member_id")},
+                {"name":"token","value":getCookie("token")},
+                {"name":"star","value":$(".checkbox-row input[type='checkbox']:checked").length},
+                {"name":"content","value":$("#textarea").val()}
+            ],
+            success:function(res){
+                if(res.code == "1"){
+                    mui.toast(res.message);
+                }else{
+                    mui.toast("发布失败");
+                }
+            }
+        });
+    }
+});
+</script>
+</html>

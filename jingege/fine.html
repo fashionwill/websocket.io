@@ -1,0 +1,135 @@
+<html lang="zh-cmn-Hans" style="overflow: hidden;height: 100%;">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+    <title>双行线聊天室</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="css/common.css">
+    <style>
+        @charset "utf-8";
+        html{font-family: PingFangSC-Light, HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", Helvetica, STHeiTi, sans-serif;font-size: 14px}
+        body,h1,h2,h3,ol,p,ul{margin: 0}
+        ul{padding: 0}
+        body{-webkit-user-select: none;-webkit-tap-highlight-color: transparent;outline: 0}
+        img{border: 0}
+        button{padding: 0;margin: 0;border: 0;}
+        a{-webkit-touch-callout: none;text-decoration: none;}
+        input,button,textarea{font: inherit;outline: 0;-webkit-appearance: none;border: 0;resize:none;}
+        .video-page{position: fixed;top: 0;width: 100%;height: 100%;overflow: hidden;}
+        .video-pane{position: absolute;top: 0;left: 0;bottom: 0;right: 0;z-index: 1000;}
+        .scrollview{width: 100%;height: 100%;overflow: hidden;display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-moz-box-orient: vertical;-moz-box-direction: normal;-webkit-flex-direction: column;-ms-flex-direction: column;flex-direction: column;}
+        .video-pane-head{background: #fff;text-align: center;position: relative;}
+        .video-pane-head .pull-left{    position: absolute;width: 15px;height: 25px;display: block;background: url(img/sprites.png) no-repeat;left: 10px;top: 10px;background-size: 180px 180px;background-position: -20px 4px;}
+        .video-pane-head .video-title{line-height: 44px;height: 44px;font-size: 15px;color: #333;}
+        .video-pane-body{width: 100%;display: block;-webkit-box-flex: 1;-moz-box-flex: 1;-webkit-flex: 1;-ms-flex: 1;flex: 1;overflow-y: scroll;position: relative;background: #f6f6f6;-webkit-overflow-scrolling: touch;}
+        .video-discuss-form{height: 33px;background: #e6e7ea;padding: 8px 70px 10px 95px;position: relative;}
+        .video-discuss-input{width: 100%;height: 35px;vertical-align: top;padding:9px 5px;border-radius: 2px;line-height: 18px;}
+        .fxied-left{position: absolute;top: 8px;left:0;width: 90px;height: 35px;overflow: hidden;}
+        .fxied-left span{display: block;width: 50%;float: left;height: 100%;}
+        .fxied-left .discu-btn{background: url(img/syimg.png);background-size: 295px 185px;background-position: -31px -103px;}
+        .fxied-left .add-btn{background: url(img/syimg.png) no-repeat;background-size: 295px 185px;background-position: 6px -103px;position: relative;}
+        .fxied-left .key-btn{background: url(img/key.png) no-repeat center center;background-size: 30px 30px;display: none;}
+        .video-discuss-button{background: #a8b0bd;height: 35px;color: #fff;width: 55px;position: absolute;right: 7px;font-size: 14px;top: 8px;border-radius: 2px;}
+        .video-sms-list li{position: relative;padding: 20px 15px;}
+        .discuss-emotion{height: 200px;background: #fff;display: none;overflow-y: scroll;-webkit-overflow-scrolling: touch;}
+        .emoji-content{float: left;width: 12.5%;text-align: center;height: 36px;margin-top: 10px;}
+        #filepic{position: absolute;top: 0;right: 0;width: 100%;height: 100%;opacity: 0;}
+        .mui-toast-container{height: 50px;position: absolute;left: 50%;background: #666;color: #fff;line-height: 50px;text-align: center;margin-top: -20px;margin-left: -80px;border-radius: 5px;display: none;}
+        .mui-toast-container.mui-active{display: block;}
+    </style>
+</head>
+<body style="overflow: hidden;height: 100%;">
+<div class="video-page">
+    <div class="video-play">
+        <img src="img/back-img2.png" width="100%" height="100%">
+    </div>
+    <div class="video-pane">
+        <div class="scrollview">
+            <div class="video-pane-head">
+                <a href="#" class="pull-left"></a>
+                <p class="video-title">聊天</p>
+            </div>
+            <div class="video-pane-body">
+                <div class="video-sms-list">
+                    <ul class="video-col" id="video_sms_list">
+                    </ul>
+                </div>
+            </div>
+            <div class="video-footer">
+                <div class="video-discuss-pane">
+                    <div class="video-discuss-form">
+                        <textarea type="text" class="video-discuss-input" id="send_msg_text" placeholder="输入聊天内容"></textarea>
+                        <button class="video-discuss-button" id="discuss-button">发送</button>
+                        <div class="fxied-left">
+                            <span onclick="KeyBtn(this)" class="key-btn"></span>
+                            <span onclick="DiscuBtn(this)" class="discu-btn"></span>
+                            <span onclick="AddBtn(this)" class="add-btn"><input type="file" id="filepic"></span>
+                        </div>
+                    </div>
+                    <div class="discuss-emotion">
+                        <div class="emotion-pane-emjon">
+                            图片上传那些
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="http://cdn.ronghub.com/RongIMLib-2.3.0.min.js"></script>
+<script src="http://cdn.ronghub.com/RongEmoji-2.2.6.min.js"></script>
+<script src="js/mui.min.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="js/connom.js"></script>
+<script src="js/UserRYServer.js"></script>
+<script>
+function DiscuBtn(e){
+    $(".discuss-emotion").slideDown();
+    $(e).hide();
+    $(".fxied-left .key-btn").show();
+    $("#send_msg_text").blur();
+}
+function KeyBtn(e){
+    $(e).hide();
+    $(".fxied-left .discu-btn").show();
+    $(".discuss-emotion").slideUp();
+    $("#send_msg_text").focus();
+}
+function AddBtn(e){
+    $(".discuss-emotion").slideUp();
+    $("#send_msg_text").blur();
+
+}
+$("#send_msg_text").on("click",function(){
+    $(".discuss-emotion").slideUp();
+    $(".fxied-left .key-btn").hide();
+    $(".fxied-left .discu-btn").show();
+    $("#send_msg_text").focus();
+})
+
+function RongVideoSms(){
+    var Emojiconfig = {
+        size: 32,
+    };
+    RongIMLib.RongIMEmoji.init(Emojiconfig);
+    var EmojiList = RongIMLib.RongIMEmoji.list;
+    var EmojiHtml = "";
+    for(var i=0;i<EmojiList.length;i++){
+        EmojiHtml+= '<div class="emoji-content" onclick="setEmojiText(this);">'+EmojiList[i].node.outerHTML+'</div>';
+    }
+    $(".emotion-pane-emjon").html(EmojiHtml);
+    $(".emotion-pane-emjon .rong-emoji-content").css({
+        "font-size":"1px !important;"
+    })
+
+}
+function setEmojiText(e){
+        $("#send_msg_text").val($("#send_msg_text").val()+$(e).find("span").attr("name"));
+    }
+RongVideoSms();
+</script>
+</html>

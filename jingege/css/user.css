@@ -1,0 +1,181 @@
+.userinput{
+	padding: 70px 25px 0;
+}
+.userinput li{
+	padding-left: 50px;
+	position: relative;
+	background: #fff;
+}
+.userinput .label_input{
+	border:1px solid #8d8e8e;
+	border-radius: 15px;
+	margin-bottom: 10px;
+	min-height: 45px;
+}
+.userinput li .let-label{
+	position: absolute;
+	top: 7px;
+	left: 10px;
+	font-size: 28px;
+}
+.userinput li .input{
+	margin-bottom: 0;
+	border:none;
+	background: none;
+	height: 43px;
+	padding-left: 0;
+	font-size: 15px;
+}
+.forget-pw-btn{
+	padding: 20px 15px 15px;
+}
+.forget-pw-btn .mui-btn{
+	padding:10px;
+	border:none;
+	width:100%;
+	color: #fff;
+	font-size: 18px;
+	background: #ff9c00;
+}
+.user-content .regist-link{
+	color: #ff9c00;
+	margin-left: 15px;
+	font-size: 15px;
+}
+.user-content .forget-pw-safe{
+	color: #ff9c00;
+	float: right;
+	margin-right: 15px;
+	font-size: 15px;
+}
+.user-content .forget-pw-safe em{
+	color: #bbb;
+}
+
+/*个人中心*/
+.user-content .us_header_main{
+	padding: 60px 50px 50px;
+	text-align: center;
+	position: relative;
+}
+.us_header_img #img,.us_header_img a{
+	display: block;
+	width: 80px;
+	height: 80px;
+	margin:0 auto;
+	border-radius: 100%;
+}
+.us_header_name{
+	color: #333;
+	font-size: 18px;
+	padding-top: 10px;
+}
+.user-content .mui-badge{
+	background: none;
+	color: #bbb;
+}
+.user-content .mui-badge em{
+	color: #ff9c00;
+	padding:0 2px;
+}
+.mui-table-view.editdata .editimg{
+	float: right;
+	margin-right:25px;
+}
+.editdata .editimg img{
+	display: block;
+	width: 60px;
+	height: 60px;
+	border-radius: 100%;
+}
+.mui-table-view.editdata #editimg{
+	top: 0;
+    position: absolute;
+    right: 20px;
+    height: 100%;
+    width: 100px;
+    opacity: 0;
+}
+.mui-table-view.editdata .mui-badge.badge-hide{
+	max-width: 55%;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    height: 18px;
+    line-height: 15px;
+    white-space: initial;
+}
+.user-content .twobtn{
+	text-align: center;
+	padding-top: 50px;
+}
+.user-content .twobtn .mui-btn{
+	background: #ff9c00;
+	border: none;
+	color: #fff;
+	padding: 10px 12px;
+	font-size: 15px;
+	width: 50%;
+}
+.router_data .mui-table-view-cell input,.router_data .mui-table-view-cell textarea{
+	font-size: 15px;
+	color: #333;
+	padding: 10px;
+}
+#setsheet .mui-table-view-cell{
+	color: #333;
+}
+.mui-row.arealist{
+	margin: 0 8px;
+	background: #fff;
+}
+.arealist .mui-table-view.view_s{
+	border-radius: 4px 0 0 4px;
+	margin:0;
+}
+.arealist .mui-table-view.view_city{
+	border-radius: 0 4px 4px 0;
+	margin:0;
+}
+#setsheet .mui-table-view-cell.active{
+	background: #ff9c00;
+	color: #fff;
+}
+.mui-popover .router_data .mui-table-view .mui-table-view-cell:first-child{
+	border-radius: 0;
+}
+.mui-popover .router_data .mui-table-view .mui-table-view-cell:last-child{
+	border-radius: 0;
+}
+.mui-table-view .gametag{
+	width: 50%;
+	float: left;
+	overflow: hidden;
+	border-bottom: 1px solid #ddd;
+	position: relative;
+	padding: 8px;
+}
+.mui-table-view .gametag img{
+	display: block;
+	width: 60px;
+	height: 60px;
+	float: left;
+}
+.gametag .camename{
+	display: block;
+	color: #ff9c00;
+	height: 20px;
+	padding-left: 65px;
+	text-align: left;
+	font-size: 14px;
+    line-height: 15px;
+}
+.gametag .checkbox{
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	width: 17px;
+	height: 17px;
+}

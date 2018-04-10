@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>游戏约玩触屏版</title>
+    <link rel="stylesheet" type="text/css" href="css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/user.css">
+</head>
+<body>
+<div class="webview" id="webview">
+    <div class="scrollview">
+        <div class="top-fixed">
+            <header id="header" class="">
+                <h1 class="title">用户登录</h1>
+            </header>
+        </div>
+        <div class="scroll-wrap" style="background: #fff;">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <div class="user-content">
+                        <ul class="userinput">
+                            <li class="label_input">
+                                <label class="let-label mui-icon mui-icon-person"></label>
+                                <input class="input" id="usernumber" type="text" placeholder="账号">
+                            </li>
+                            <li class="label_input">
+                                <label class="let-label mui-icon mui-icon-locked"></label>
+                                <input class="input" id="password" type="password" placeholder="密码">
+                            </li>
+                        </ul>
+                        <div class="forget-pw-btn"><button class="mui-btn" onclick="userlogin();">登录</button></div>
+                        <a href="regist.html" class="regist-link">注册</a>
+                        <a href="forgetpwd.html" class="forget-pw-safe">忘记密码？</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-fxied">
+            <footer>
+                <a href="index.html" class="home">
+                  <span class="icon icon_home"></span>
+                  <p>首页</p>
+                </a>
+                <a href="fine.html" class="fine">
+                  <span class="icon icon_fine"></span>
+                  <p>热门</p>
+                </a>
+                <a href="trip.html" class="trip">
+                  <span class="icon icon_trip"></span>
+                  <p>主播</p>
+                </a>
+                <a href="user.html" class="my active">
+                  <span class="icon icon_my"></span>
+                  <p>我的</p>
+                </a>
+            </footer>
+        </div> 
+    </div>
+</div>
+</body>
+
+<script src="js/mui.min.js"></script>
+<script src="js/connom.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    mui('.mui-scroll-wrapper').scroll();
+    function userlogin(){
+        var usernumber = $("#usernumber").val();
+        var password = $("#password").val();
+        var reg = /^1[3|4|5|7|8][0-9]{9}$/; //验证规则
+        if(!reg.test(usernumber)){
+            mui.toast("请输入正确的手机号码");
+        }else if(getStrLength(password)<6||getStrLength(password)>16){
+            mui.toast("请输入6-16位的密码!");
+        }else{
+            
+            $.ajax({
+                type:"post",
+                url:'http://admin.piu488.com/index.php?s=/Home/Login/login',
+                dataType:"json",
+                data:[
+                    {"name":"phone","value":usernumber},
+                    {"name":"pwd","value":password}
+                ],
+                success:function(result){
+                    if(result.code == "1"){
+                        mui.toast("登录成功");
+                        setCookie("member_id",result[0].member_id);
+                        setCookie("member_name",result[0].member_name);
+                        setCookie("token",result[0].token);
+                        setTimeout(function(){
+                            window.location = '/jingege/index.html';
+                        },2000);
+                    }else if(result.code == "6"){
+                        mui.toast("账号或者密码错误!");
+                    }else{
+                        mui.toast(result);
+                    }
+                },
+                error:function(result){
+                    console.log(result);    
+                }
+            });
+       }
+    }
+</script>
+</html>

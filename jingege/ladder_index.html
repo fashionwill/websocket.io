@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>游戏约玩触屏版</title>
+    <link rel="stylesheet" type="text/css" href="css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <style>
+        .top-fixed.ladder-bj .mui-input-clear{padding-left: 42px;text-align: left;}
+        #updatainput{position: absolute;top: 0;left: 0;z-index: 2;color: #666;width: 40px;height: 40px;text-align: center;line-height: 40px;}
+    </style>
+</head>
+<body>
+<div class="webview" id="webview">
+    <div class="scrollview">
+        <div class="top-fixed ladder-bj">
+            <header id="header" class="">
+                <a href="#" class="mui-action-back mui-icon mui-icon-back"></a>
+                <h1 class="title">王者荣耀陪练</h1>
+            </header>
+            <div class="mui-input-row">
+                <input id="inputvalue" type="search" class="mui-input-clear" placeholder="">
+                <span id="updatainput" class="mui-icon mui-icon-search"></span>
+            </div>
+        </div>
+        <div class="sort-tab mui-row">
+            <div class="mui-col-xs-6">
+                <a href="#sheetleft" class="arrow-text">智能排序</a>
+            </div>
+            <div class="mui-col-xs-6">
+                <a href="#sheetright" class="arrow-sort">筛选</a>
+            </div>
+        </div>
+        <div class="scroll-wrap">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    
+                    <div class="sort-info-list">
+                        <ul class="table-view">
+                            <!-- <li>
+                                <a href="skillinfo.html" class="view-cell clearfix">
+                                    <div class="media-img"><img src="upload/pl1.jpg" alt=""></div>
+                                    <div class="media-body">
+                                        <div class="media-left">
+                                            <p class="name">带妹一哥</p>
+                                            <div class="property">
+                                                <span class="sex">男</span>
+                                                <em class="map">广州</em>
+                                            </div>
+                                            <div class="info">
+                                                <span class="evaluate">好评率97%</span>
+                                                <span class="time">2018-01-01</span>
+                                            </div>
+                                        </div>
+                                        <div class="media-right">
+                                            <p class="reducible">可约时间：18:00-22:00</p>
+                                            <span class="reducible">接单次数：10次</span>
+                                            <p class="price">￥200/小时</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
+<div id="sheetleft" class="mui-popover mui-popover-bottom mui-popover-action">
+    <div class="searchSort clearfix">
+        <span class="active">最新新人</span>
+        <span>好评最高</span>
+        <span>接单最多</span>
+        <span>人气最高</span>
+    </div>
+    <ul class="mui-table-view">
+        <li class="mui-table-view-cell">
+            <a href="#sheetleft">确定</a>
+        </li>
+        <li class="mui-table-view-cell">
+            <a href="#sheetleft" style="color: #f0c239;"><b>取消</b></a>
+        </li>
+    </ul>
+</div>
+<div id="sheetright" class="mui-popover mui-popover-bottom mui-popover-action">
+    <div class="popCover">
+        <div class="row-blick">
+            <p class="title">性别</p>
+            <div class="sexbtn clearfix">
+                <span data-sex="all" onclick="getsex(this);" class="active">全部</span>
+                <span data-sex="m" onclick="getsex(this);">男</span>
+                <span data-sex="w" onclick="getsex(this);">女</span>
+            </div>
+        </div>
+        <div class="row-blick">
+            <p class="title">价格范围</p>
+            <div class="pricebtn clearfix">
+                <span class="active" onclick="getprice(this)" data-price="all">全部</span>
+                <div id="pricebtn">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="mui-table-view">
+        <li class="mui-table-view-cell">
+            <a href="#sheetright" id="updatesheet">确定</a>
+        </li>
+        <li class="mui-table-view-cell">
+            <a href="#sheetright" style="color: #f0c239;"><b>取消</b></a>
+        </li>
+    </ul>
+</div>
+</body>
+
+<script src="js/mui.min.js"></script>
+<script src="js/connom.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    mui('.mui-scroll-wrapper').scroll();
+    document.addEventListener('touchmove',function(event){event.preventDefault()},true);
+    //获取价格
+    function getprice(e){
+        $(".pricebtn span").removeClass("active");
+        $(e).addClass("active");
+    }
+    //获取价格
+    function getsex(e){
+        $(".sexbtn span").removeClass("active");
+        $(e).addClass("active");
+    }
+    function initdata(sex,pic,search){
+        if(getCookie("member_id")==null||getCookie("token")==null){
+            window.location = 'http://www.jingege.com/jingege/login.html';
+        }else{
+        $.ajax({
+            type:"post",
+            url:'http://admin.piu488.com/index.php?s=/Home/ListPlay/index',
+            dataType:"json",
+            data:[
+                {"name":"id","value":getCookie("member_id")},
+                {"name":"token","value":getCookie("token")},
+                {"name":"column_id","value":getQueryString("itemid")},
+                {"name":"price","value":pic},
+                {"name":"sex","value":sex},
+                {"name":"member_name","value":search},
+            ],
+            success:function(data){
+                console.log(data);
+                if(data.code == "2"){
+                    window.location = 'http://www.jingege.com/jingege/login.html';
+                }else if(data.code == "1"){
+                    setCookie("column_id",getQueryString("itemid"));
+                    var _html = "";
+                    var _htmlnub = "";
+                    for(var i in data.data.data){
+                        var resdata = data.data.data[i];
+                        var _sex = resdata.sex=="m"?"男":"女";
+                        _html+='<li><a href="skillinfo.html?member_id='+resdata.member_id+'" class="view-cell clearfix">',
+                            _html+='<div class="media-img"><img src="'+resdata.member_img+'" alt=""></div>',
+                                _html+='<div class="media-body">',
+                                    _html+='<div class="media-left">',
+                                        _html+='<p class="name">'+resdata.member_name+'</p>',
+                                        _html+='<div class="property">',
+                                            _html+='<span class="sex">'+_sex+'</span>',
+                                            _html+='<em class="map">'+resdata.ip_guishudi+'</em>',
+                                        _html+='</div>',
+                                        _html+='<div class="info">',
+                                            _html+='<span class="evaluate">好评率97%</span>',
+                                            _html+='<span class="time">2018-01-01</span>',
+                                        _html+='</div>',
+                                    _html+='</div>',
+                                    _html+='<div class="media-right">',
+                                        _html+='<p class="reducible">可约时间：'+resdata.sparring_time+'</p>',
+                                        _html+='<span class="reducible">接单次数：10次</span>',
+                                        _html+='<p class="price">￥'+resdata.price+'/小时</p>',
+                                    _html+='</div>',
+                                _html+='</div>',
+                            _html+='</a>',
+                        _html+='</li>';
+                    }
+                    for(var j in data.data.price){
+                        _htmlnub+='<span onclick="getprice(this)" data-price="'+data.data.price[j]+'">￥'+data.data.price[j]+'</span>';
+                    }
+                    $(".table-view").html(_html);
+                    $("#pricebtn").html(_htmlnub);
+                }else if(data.code == "3"){
+                    $(".table-view").html('<li style="text-align:center;padding:120px 0;">空空如也</li>');
+                }else{
+                    mui.toast(data.message);
+                }
+            }
+        });
+        }
+    }
+    initdata();
+    $(".arrow-sort").on("tap",function(){
+        mui('#sheetright').popover();
+    });
+    $("#updatesheet").on("tap",function(){
+        var sex = $(".sexbtn .active").attr("data-sex");
+        var price = $(".pricebtn .active").attr("data-price");
+        var search = $("#inputvalue").val();
+        if(sex == "all" && price== "all"){
+            initdata("","","");
+        }else if(sex != "all" && price!= "all"){
+            initdata(sex,price,"");
+        }else if(sex == "all" && price!= "all"){
+            initdata("",price);
+        }else if(sex != "all" && price== "all"){
+            initdata(sex,"","");
+        }
+    });
+    $('#updatainput').on('tap', function(e){
+        initdata("","",$("#inputvalue").val());
+    })
+</script>
+</html>

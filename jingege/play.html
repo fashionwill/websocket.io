@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>游戏约玩触屏版</title>
+    <link rel="stylesheet" type="text/css" href="css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <style>
+    .mui-toast-container .mui-toast-message{
+        padding:0;
+        background: none;
+    }
+    .mui-toast-message img{display: block;width: 100%;height: 100%;}
+    </style>
+</head>
+<body>
+<div class="webview" id="webview">
+    <div class="scrollview">
+        <div class="top-fixed">
+            <header id="header" class="">
+                <a href="#" class="mui-action-back mui-icon mui-icon-back"></a>
+                <h1 class="title">支付</h1>
+            </header>
+        </div>
+        <div class="scroll-wrap" style="background: #f9f9f9;">
+            <div class="play-content">
+                <p class="cardtxt">支付方式</p>
+                <div class="mui-card">
+                    <div class="mui-input-row mui-radio">
+                        <label class="WeChat">微信</label>
+                        <input name="radio" type="radio">
+                    </div>
+                    <div class="mui-input-row mui-radio">
+                        <label class="Alipay">支付宝</label>
+                        <input name="radio" type="radio" checked>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-fxied">
+            <div class="mui-row">
+                <span class="mui-col-xs-8 leftsum">总计：<em>￥40元</em></span>
+                <a href="#" class="mui-col-xs-4 setplay">确认支付</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="js/mui.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.2.1.slim.js"></script>
+<script>
+    mui('.mui-scroll-wrapper').scroll();
+    document.addEventListener('touchmove',function(event){event.preventDefault()},true);
+    $(".setplay").on("click",function(){
+        mui.toast('<img src="img/toast.jpg">');
+    })
+</script>
+</html>

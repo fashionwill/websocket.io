@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双行线-新闻动态</title>
+    <meta name="author" content="author">
+    <meta name="description" content="hello">
+    <meta name="keywords" content="双行线">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Window-target" content="_top">
+    <meta name="robots" content="none">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<style>
+		.view-news-box{background: #fff;}
+		.view-news-box .news-item li{position: relative;background: #fff;border-bottom: 1px solid #ddd;padding:10px 15px;}
+		.view-news-box .news-item li:last-child{border-bottom: none;}
+		.view-news-box li .newsimg{float: left;width: 160px;height: 140px;overflow: hidden;position: relative;}
+		.view-news-box li .newsimg img{display: block;width: 100%;height: 100%;}
+		.view-news-box li .news-block{padding-left: 175px;}
+		.view-news-box li .news-block .news-title{font-size: 18px;color: #333;height: 23px;line-height: 22px;overflow: hidden;padding-top: 5px;margin-bottom: 10px;}
+		.view-news-box li .news-block .news-desc{font-size: 15px;height: 40px;overflow: hidden;color: #777;line-height: 20px;}
+    	.view-news-box li .news-block .item-pos{font-size: 18px;color: #333;}
+		.clearfix:after{display: block;content: "";clear: both;}
+		.view-news-box li .item-pos .num{color: #ff8600;font-size: 20px;}
+		.view-news-box li .news-block .news-dest{position: absolute;bottom: 15px;right: 20px;display: block;width: 150px;background: #ffdd25;color: #333;height: 40px;line-height: 40px;text-align: center;font-size: 16px;border-radius: 4px;}
+	</style>
+</head>
+<body>
+<div class="view-news-box">
+	<ul class="news-item">
+		<li class="clearfix">
+			<div class="newsimg"><img src="http://www.lolshipin.com/uploads/allimg/161114/17-1611141P4370-L.jpg" alt=""></div>
+			<div class="news-block">
+				<h3 class="news-title">中国饶舌念着屎尿屁想着人生哲理！</h3>
+				<div class="news-desc">中国式说唱，里面只有普通话和粤语，下一次是地方话专场！</div>
+				<div class="item-pos">收听人数: <span class="num">195909</span></div>
+				<a href="#" class="news-dest">点击收听</a>
+			</div>
+		</li>
+		<li class="clearfix">
+			<div class="newsimg"><img src="http://www.lolshipin.com/uploads/allimg/161114/17-1611141P4370-L.jpg" alt=""></div>
+			<div class="news-block">
+				<h3 class="news-title">中国饶舌念着屎尿屁想着人生哲理！</h3>
+				<div class="news-desc">中国式说唱，里面只有普通话和粤语，下一次是地方话专场！</div>
+				<div class="item-pos">收听人数: <span class="num">195909</span></div>
+				<a href="#" class="news-dest">点击收听</a>
+			</div>
+		</li>
+	</ul>
+</div>
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>
+function initinfo(){
+    $.ajax({
+        type:"get",
+        url:'http://www.lolshipin.com/think/index.php?s=/Home/Api/getcate',
+        dataType:"json",
+        data:[
+            {"name":"page","value":123},
+            {"name":"jsonstr","value":1},
+   			{"name":"pageshow","value":20},
+   			{"jsonstr":[]}
+        ],
+        success:function(res){
+            console.log(res);
+        }
+    })
+}
+initinfo();
+</script>
+</html>

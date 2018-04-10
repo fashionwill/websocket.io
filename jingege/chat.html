@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no,minimum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>游戏约玩触屏版</title>
+    <link rel="stylesheet" type="text/css" href="css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <style>
+        #ChatContenttext{
+            display: block;
+            padding:10px 5px 0;
+            border:none;
+            font-size: 14px;
+            line-height: 17px;
+            height:34px;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="webview">
+    <div class="scrollview">
+        <div class="top-fixed">
+            <header>
+                <a href="#" class="mui-action-back mui-icon mui-icon-back"></a>
+                <h1 class="title" id="titlename">游戏品类</h1>
+            </header>
+        </div>
+        <div class="scroll-wrap">
+            <div class="mui-scroll-wrapper" id="ChatViewScroll">
+                <div class="mui-scroll">
+                    <div class="viewport">
+                        <ul class="chat-info-list">
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-fxied">
+            <div class="fxied-barnav">
+                <div class="fxied-right clearfix">
+                    <span class="key"></span>
+                    <span class="keyboard"></span>
+                    <span class="more_ways_icon"></span>
+                </div>
+                <div class="fxied-left">
+                    <!-- <div class="mui-scroll-wrapper" id="ChatContent">
+                        <div class="mui-scroll"> -->
+                            <!-- <input class="ChatContent" id="ChatContenttext" contenteditable="true"> -->
+                            <!-- <input class="ChatContent" id="ChatContenttext" type="text" style="margin: 0"> -->
+                            <textarea name="textarea" id="ChatContenttext" cols="30" rows="1" placeholder="输入聊天内容
+                            "></textarea>
+                    <!--     </div>
+                    </div> -->
+                </div>
+                <div class="more_ways"><span class="send-info">发送</span></div>
+            </div>
+            <div class="more_ways_foo">
+                <span class="ways_icon1"><input id="showPreview" type="file"></span>
+                <span class="ways_icon2"><input type="file" accept="image/gif,image/jpeg,image/png,image/gif" capture="camcorder"></span>
+                <span class="ways_icon3"><input type="file" ></span>
+                <span class="ways_icon4"></span>
+            </div>
+            <div class="regretlist clearfix">
+                <div class="mui-scroll-wrapper" id="EmojViewScroll">
+                    <div class="mui-scroll">
+                        <div class="drawingEmoj clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
+</body>
+<script src="http://cdn.ronghub.com/RongIMLib-2.3.0.min.js"></script>
+<script src="http://cdn.ronghub.com/RongEmoji-2.2.6.min.js"></script>
+<script src="js/mui.min.js"></script>
+<script src="js/connom.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="js/systemSetup.js"></script>
+<script src="js/LinkRYServer.js"></script>
+<script>
+
+    var systemSetup = new systemSetup();
+    // $(".chat-info-list").html(JSON.parse(localStorage.getItem('key')));
+    
+</script>
+</html>

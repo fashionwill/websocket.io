@@ -1,0 +1,15 @@
+{
+	"advresult":[
+		{"id":"0","imgurl":"upload/upload1.jpg","title":"18","name":"广告"},
+		{"id":"0","imgurl":"upload/upload2.jpg","title":"18","name":"广告"},
+		{"id":"0","imgurl":"upload/upload1.jpg","title":"18","name":"广告"}
+	],
+	"modresult":[
+		{"id":"0","imgurl":"upload/list1.jpg","title":"18","name":"广告"},
+		{"id":"1","imgurl":"upload/list2.jpg","title":"18","name":"广告"},
+		{"id":"2","imgurl":"upload/list3.jpg","title":"18","name":"广告"},
+		{"id":"3","imgurl":"upload/list4.jpg","title":"18","name":"广告"},
+		{"id":"4","imgurl":"upload/list5.jpg","title":"18","name":"广告"},
+		{"id":"5","imgurl":"upload/list6.jpg","title":"18","name":"广告"}
+	]
+}

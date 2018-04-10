@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="email=no" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" name="viewport">
+	<title>调用融云API</title>
+	<script src="http://cdn.ronghub.com/RongIMLib-2.3.0.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="./stylesheets/websotken.css" />
+</head>
+<body>
+<div class="main-content">
+	
+
+	<header id="header" class="header-bar">
+		<a href="#" class="block-set"><</a>
+		<h1 class="hd-title">标题名称</h1>
+	</header><!-- /header -->
+	<div class="main" class="hd-title">
+		<div class="webtokenview">
+		</div>
+	</div>
+
+
+	<nav class="bar_TabNav">
+        <div class="alter_block">
+            <a href="javascript:void(0)" id="clickSetVoice" class="conn_btn voice_btn"></a>
+            <div class="text_input">
+                <input class="input" type="text" placeholder="输入内容发送" id="settextitem" name="">
+                <button class="setvoiceitem">按住&nbsp;说话</button>
+            </div>
+            <a href="javascript:void(0)" id="clickSetFace" class="conn_btn face_btn"></a>
+            <a href="javascript:void(0)" id="clickSetAdd" class="conn_btn more_btn"></a>
+        </div>
+        <div class="resource_block clearfix" id="SetFaceRes">
+            <div class="res_list alter_req">
+                <span class="item_pic res_pic"><input type="file" onchange="showPreview(this);" class="setFile" name="" multiple></span>   
+                <span class="item_txt res_text">照片</span>
+            </div>
+            <div class="res_list">
+                <span class="item_pic res_shoot"><input type="file" class="setFile" name="" accept="video/*" capture="camcorder"></span>   
+                <span class="item_txt res_text">拍摄</span>
+            </div>
+            <div class="res_list">
+                <span class="item_pic res_map"></span>   
+                <span class="item_txt res_text">位置</span>
+            </div>
+            <div class="res_list">
+                <span class="item_pic res_voice"></span>   
+                <span class="item_txt res_text">语音通话</span>
+            </div>
+            <div class="res_list">
+                <span class="item_pic res_video"><input type="file" class="setFile" name="" accept="audio/*" capture="microphone"></span>   
+                <span class="item_txt res_text">视频通话</span>
+            </div>
+        </div>
+        <div class="resource_block bar_face" id="SetAddRes">
+            <div class="hd_row_face">
+                <div class="faceList_row">
+                    <div class="faceList clearfix">
+                        <span class="face_pic pic_1"></span>
+                        <span class="face_pic pic_2"></span>
+                        <span class="face_pic pic_3"></span>
+                        <span class="face_pic pic_4"></span>
+                        <span class="face_pic pic_5"></span>
+                        <span class="face_pic pic_1"></span>
+                        <span class="face_pic pic_2"></span>
+                        <span class="face_pic pic_3"></span>
+                        <span class="face_pic pic_4"></span>
+                        <span class="face_pic pic_5"></span>
+                        <span class="face_pic pic_1"></span>
+                        <span class="face_pic pic_2"></span>
+                        <span class="face_pic pic_3"></span>
+                        <span class="face_pic pic_4"></span>
+                        <span class="face_pic pic_5"></span>
+                        <span class="face_pic pic_1"></span>
+                        <span class="face_pic pic_2"></span>
+                        <span class="face_pic pic_3"></span>
+                        <span class="face_pic pic_4"></span>
+                        <span class="face_pic pic_5"></span>
+                        <span class="face_pic pic_1"></span>
+                        <span class="face_pic pic_2"></span>
+                        <span class="face_pic pic_3"></span>
+                        <span class="face_pic pic_4"></span>
+                        <span class="face_pic pic_5"></span>
+                    </div>
+                    <div class="sub_msg"><i></i><i></i></div>
+                </div>
+                <span class="del_face"></span>
+            </div>
+            <div class="foot_bar clearfix">
+                <span class="icon_face"></span>
+                <button class="go_faceBtn active">发送</button>
+            </div>
+        </div>
+    </nav>
+</div>
+</body>
+<script>
+window.onload=function(){
+	//通过“回车”提交信息
+	document.getElementById("settextitem").onkeydown = function(e) {
+		var val = e.target.value;
+	    e = e || event;
+	    if (e.keyCode === 13) {
+	        sendTextMessage(val);
+	    }
+	};
+
+
+	var appKey = "vnroth0kv4u5o";
+	var token = "wBpd6KKOBr6e/THG0CVdZh+tCxX3qzGif6QAsfbSryr9P8kLm0aZOKMiICAL2QZTqJJJ7/CpB5A5s18NJugM4P6mdoJi6sjI";
+
+	var config = {};
+	//support protobuf url + function
+
+	RongIMLib.RongIMClient.init(appKey,null,config);
+
+	var instance = RongIMClient.getInstance();
+
+	// 连接状态监听器
+	RongIMClient.setConnectionStatusListener({
+		onChanged: function (status) {
+		    switch (status) {
+		        case RongIMLib.ConnectionStatus["CONNECTED"]:
+		        case 0:
+		        	console.log("连接成功")
+		            break;
+
+		        case RongIMLib.ConnectionStatus["CONNECTING"]:
+		        case 1:
+		        	console.log("连接中")
+		            break;
+
+		        case RongIMLib.ConnectionStatus["DISCONNECTED"]:
+		        case 2:
+		        	console.log("当前用户主动断开链接")
+		            break;
+
+		        case RongIMLib.ConnectionStatus["NETWORK_UNAVAILABLE"]:
+		        case 3:
+		        	console.log("网络不可用")
+		            break;
+
+		        case RongIMLib.ConnectionStatus["CONNECTION_CLOSED"]:
+		        case 4:
+		        	console.log("未知原因，连接关闭")
+		            break;
+
+		        case RongIMLib.ConnectionStatus["KICKED_OFFLINE_BY_OTHER_CLIENT"]:
+		        case 6:
+		        	console.log("用户账户在其他设备登录，本机会被踢掉线")
+		            break;
+
+		        case RongIMLib.ConnectionStatus["DOMAIN_INCORRECT"]:
+		        case 12:
+		        	console.log("当前运行域名错误，请检查安全域名配置")
+		            break;
+		    }
+		}
+	});
+
+	RongIMClient.setOnReceiveMessageListener({
+		// 接收到的消息
+		onReceived: function (message) {
+		    // 判断消息类型
+			var contentDiv = '<div class="sessageText">' + message.content.content + '</div>';
+            var usernameDiv = '<span class="sessagePic" style="background: #ddd url('+ message.content.user.portrait+');background-size: 100% 100%;"></span>';
+			var section = document.createElement('section');
+			section.className = 'service clearfix';
+            section.innerHTML = usernameDiv + contentDiv;
+			document.querySelector(".webtokenview").appendChild(section);
+			document.querySelector(".hd-title").innerHTML = message.content.user.name;
+		}
+	});
+
+	var conversationtype = RongIMLib.ConversationType.PRIVATE;
+	var targetId = "13660603345";
+
+	//开始链接
+	RongIMClient.connect(token, {
+		onSuccess: function(userId) {
+			console.log("链接成功，用户id：" + userId);
+		},
+		onTokenIncorrect: function() {
+			console.log('token无效');
+		},
+		onError:function(errorCode){
+			console.log(errorCode);
+		}
+	});
+
+
+
+	function sendTextMessage(event){
+		var pushData = "pushData" + Date.now();
+		var isMentioned = false;
+		var content = {
+			content: [event],
+			user : {
+				"id" : "13925057575",
+				"name" : "张三",
+				"portrait" : "http://rongcloud.cn/images/newVersion/log_wx.png"
+			}
+		};
+		var msg = new RongIMLib.TextMessage(content);
+		var start = new Date().getTime();
+		RongIMClient.getInstance().sendMessage(conversationtype, targetId, msg, {
+	        onSuccess: function (message) {
+	        	console.log(message);
+	        	var contentDiv = '<div class="sessageText">' + event + '</div>';
+	            var usernameDiv = '<span class="sessagePic" style="background: #53dcb0 url('+ message.content.user.portrait+');background-size: 100% 100%;"></span>';
+				var section = document.createElement('section');
+				section.className = 'user_messg clearfix';
+	            section.innerHTML = usernameDiv + contentDiv;
+				document.querySelector(".webtokenview").appendChild(section);
+	        },
+	        onError: function (errorCode,message) {
+	        	console.log(message);
+	        }
+	    }, isMentioned, pushData);
+
+	}
+}
+</script>
+</html>

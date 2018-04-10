@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>游戏约玩触屏版</title>
+    <link rel="stylesheet" type="text/css" href="css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <style>
+        .wrapper .mui-row{background: #fff;padding: 5px 10px;}
+        .wrapper .mui-col-xs-3{line-height: 40px;font-size: 15px;text-align: center;color: #777;}
+        .wrapper .mui-col-xs-9{line-height: 40px;text-align: right;font-size: 14px;}
+        .wrapper .mui-col-xs-9 input{margin-bottom:0;width:60%;padding: 5px;height: 35px;text-align: right;line-height: 35px;border: none;font-size: 14px;}
+        .wrapper .mui-col-xs-6 span{display: block;background:#e6e6e6;text-align: center;color: #ff9c00;padding:10px 5px;margin-right: 15px;border-radius: 3px;font-size: 15px;}
+        .wrapper .mui-col-xs-6 span.active{background:#ff9c00;color: #fff;}
+        .wrapper .mui-col-xs-6{margin-bottom:10px;}
+        .pay-cof-btn{padding:15px 30px 30px;}
+        .pay-cof-btn .mui-btn{width: 100%;padding:12px;font-size: 15px;border:1px solid #ff9c00;}
+
+        .sheetpay-data,.sheettime-data{background: #fff;margin: 10px 8px;border-radius: 4px;text-align: center;max-height: 300px;overflow-y: scroll;}
+        .sheetpay-tit{background: #ff9c00;color: #fff;margin: 0 8px;line-height: 50px;font-size: 15px;padding: 0 10px;border-radius: 4px 4px 0 0;}
+    </style>
+</head>
+<body>
+<div class="webview">
+    <div class="scrollview">
+        <div class="top-fixed">
+            <header>
+                <a href="#" class="mui-action-back mui-icon mui-icon-back"></a>
+                <h1 class="title">陪练赚钱</h1>
+            </header>
+        </div>
+        <div class="scroll-wrap">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <div class="wrapper">
+                        <p style="padding: 10px;font-size: 15px;">陪练游戏</p>
+                            <div id="rowblock" class="mui-row" style="padding: 15px 0 5px 15px;">
+                            </div>
+                            <p style="padding: 10px;font-size: 15px;">陪练时间</p>
+                            <ul id="ciddata">
+                            </ul>
+                            <p style="padding: 10px;font-size: 15px;">陪练价格</p>
+                            <ul id="pricdata">
+                            </ul>
+                    </div>
+                    <div class="siont-payinfo">
+                        <div class="pay-cof-btn" onclick="uploaddata()"><a style="background: #ff9c00;color: #fff;" class="mui-btn">确定</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-fxied">
+            <footer>
+                <a href="index.html" class="home">
+                  <span class="icon icon_home"></span>
+                  <p>首页</p>
+                </a>
+                <a href="fine.html" class="fine">
+                  <span class="icon icon_fine"></span>
+                  <p>热门</p>
+                </a>
+                <a href="trip.html" class="trip">
+                  <span class="icon icon_trip"></span>
+                  <p>主播</p>
+                </a>
+                <a href="user.html" class="my active">
+                  <span class="icon icon_my"></span>
+                  <p>我的</p>
+                </a>
+            </footer>
+        </div> 
+    </div>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="js/connom.js"></script>
+<script>
+mui('.mui-scroll-wrapper').scroll();
+
+$(function(){
+//     var str = "1234A4567B789";
+// str = str.substring(str.indexOf("B")+1,20)
+// console.log(str);
+    $.ajax({
+        type:"post",
+        url:'http://admin.piu488.com/index.php?s=/Home/Earn/index',
+        dataType:"json",
+        data:[
+            {"name":"id","value":getCookie("member_id")},
+            {"name":"token","value":getCookie("token")}
+        ],
+        success:function(res){
+            console.log(res[0]);
+            if(res.code==1 || res.status=="yes"){
+                var column = res[0];
+                var data = res[0];
+                if(res.code == "2" || res.status == "no"){
+                    window.location = '/jingege/login.html';
+                }else if(res.code == "1"){
+                    var _html = '';
+                    var ciddata = '';
+                    var pricdata = '';
+                    for(var i in column){
+                        var ele = column[i].column;
+                        var classmag = ele!=undefined?"active":"";
+                        _html+='<div class="mui-col-xs-6" onclick="actmsg(this);" data-id='+column[i].cid+'><span class="'+classmag+'">'+column[i].cname+'</span></div>';
+                        if(ele!=undefined){
+                            ciddata+='<li class="mui-row" data-id='+column[i].cid+'><span class="mui-col-xs-3">'+column[i].cname+'</span><a class="mui-col-xs-9"><input  id="input1" value="'+ele.sparring_time+'" type="text" placeholder="输入时间" /></a></li>';
+
+                            pricdata+='<li class="mui-row" data-id='+column[i].cid+'><span class="mui-col-xs-3">'+column[i].cname+'</span><a class="mui-col-xs-9"><input type="text" value="'+ele.price+'" placeholder="输入金额"/> 元/小时</a></li>';
+                        }
+                    }
+                    $("#pricdata").html(pricdata);
+                    $("#ciddata").html(ciddata);
+                    $("#rowblock").html(_html);
+                }
+            }else{
+                window.location = '/jingege/login.html';
+            }
+        }
+    })
+})
+function actmsg(e) {
+    if($(e).find("span").is(".active")){
+        $(e).find("span").removeClass("active");
+        var _this = $(e);
+        $("#pricdata li,#ciddata li").each(function(k,v){
+            if($(v).attr("data-id")==_this.attr("data-id")){
+                $(v).remove();
+            }
+        })
+    }else{
+        $(e).find("span").addClass("active");
+        $("#pricdata").append('<li class="mui-row" data-id='+$(e).attr("data-id")+'><span class="mui-col-xs-3">'+$(e).text()+'</span><a class="mui-col-xs-9"><input type="text" placeholder="输入金额" id="inputnum" /> 元/小时</a></li>');
+
+        $("#ciddata").append('<li class="mui-row" data-id='+$(e).attr("data-id")+'><span class="mui-col-xs-3">'+$(e).text()+'</span><a class="mui-col-xs-9"><input type="text" placeholder="输入时间" id="inputtime" />');
+    }
+}
+function uploaddata(){
+
+    // var column_id = "";
+    // var time = "";
+    // var price = "";
+    $("#ciddata li").each(function(k,v){
+        fn(k);
+        if($(v).find("input").val()==""){
+            mui.toast("时间不能为空");
+        }else{
+            // column_id+=$(v).attr("data-id")+',';
+            // time+=$(v).find("input").val()+',';
+        }
+    })
+    // var obj = $("#ciddata li");
+    // if(obj.eq(0).find("input").val()==""){
+    //     mui.toast("时间不能为空");
+    // }else if(obj.eq(1).find("input").val()==""){
+    //     mui.toast("时间不能为空");
+    // }else{
+    //     console.log("1")
+    // }
+    
+    // $("#pricdata li").each(function(k,v){
+    //     if($(v).find("input").val()==""){
+    //         mui.toast("价格不能为空");
+    //     }else{
+    //         console.log("1");
+    //         price+= $(v).find("input").val()+',';
+    //     }
+    // })
+    // var column_id = column_id.substring(0, column_id.lastIndexOf(','));
+    // var time = time.substring(0, time.lastIndexOf(','));
+    // var price = price.substring(0, price.lastIndexOf(','));
+
+    // $.ajax({
+    //     type:"post",
+    //     url:'http://admin.piu488.com/index.php?s=/Home/Earn/save',
+    //     dataType:"json",
+    //     data:[
+    //         {"name":"id","value":getCookie("member_id")},
+    //         {"name":"token","value":getCookie("token")},
+    //         {"name":"column_id","value":column_id},
+    //         {"name":"sparring_remarks","value":""},
+    //         {"name":"sparring_time","value":time},
+    //         {"name":"price","value":price},
+    //     ],
+    //     success:function(res){
+    //         if(res.status="yes"){
+    //             mui.toast("发布成功");
+    //         }else{
+    //             mui.toast("发布失败");
+    //         }
+    //     }
+    // })
+}
+</script>
+</html>

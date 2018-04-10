@@ -1,0 +1,548 @@
+.mui-icon-back{
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	color: #fff;
+}
+.index-content{
+	padding: 15px;
+	background: #323232;
+}
+.index-content .index_mobile{
+	position: relative;
+}
+.index-content .index_mobile img{
+	display: block;
+	width: 100%;
+}
+.index_mobile .link_list{
+	width: 50%;
+	float: left;
+	display: block;
+}
+.link_list .tab-img{
+	position: relative;
+	overflow: hidden;
+	padding: 73% 0 0;
+    width: 100%;
+    margin: 0 auto;
+}
+.link_list .tab-img img{
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+
+.top-fixed.ladder-bj{
+	background: url(../img/hd_bj.jpg);
+	background-size: cover;
+	background-position-y:-23px;
+}
+.top-fixed.ladder-bj header{
+	border-bottom: none;
+	background: none;
+	color: #fff;
+}
+.top-fixed.ladder-bj .mui-input-row{
+	width: 80%;
+	margin: 0 auto;
+}
+.top-fixed.ladder-bj .mui-input-clear{
+	background: #fff;
+	height: 40px;
+}
+.top-fixed.ladder-bj .mui-icon-search{
+	color: #c6c5c5;
+	font-size: 26px;
+}
+.top-fixed.ladder-bj .mui-placeholder{
+	line-height: 44px;
+	height: 40px;
+	font-weight: 600;
+}
+.top-fixed.ladder-bj .mui-icon-clear{
+	top: 10px;
+}
+.sort-tab{
+	height: 36px;
+	background:#fff;
+	font-size: 13px;
+	text-align: center;
+	line-height: 36px;
+}
+.sort-tab .arrow-text:after{
+	content: "";
+    display: inline-block;
+    width: 12px;
+    height: 16px;
+    margin-left: 6px;
+    background: url(../img/sprites.png) no-repeat;
+    background-size: 300px 300px;
+    background-position: -255px -44px;
+    vertical-align: text-bottom;
+}
+.sort-tab .arrow-text.sort-up:after{
+	background: url(../img/sprites.png) no-repeat;
+    background-size: 300px 300px;
+    background-position: -255px -22px;
+    vertical-align: text-bottom;
+}
+.sort-tab .arrow-text.sort-domp:after{
+	background: url(../img/sprites.png) no-repeat;
+    background-size: 300px 300px;
+    background-position: -255px 0;
+    vertical-align: text-bottom;
+}
+.sort-tab .arrow-sort:after{
+	content: "";
+    display: inline-block;
+    width: 19px;
+    height: 16px;
+    margin-left: 4px;
+    background: url(../img/sprites.png) no-repeat;
+    background-size: 160px 160px;
+    background-position: -47px 0px;
+    vertical-align: text-bottom;
+}
+
+.sort-tab .mui-col-xs-6{
+	z-index: 99;
+}
+.searchSort{
+    background: #fff;
+    margin: 0 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    transition:left 0.3s linear;
+	-webkit-transition:left 0.3s linear;
+}
+.searchSort span{
+	display: block;
+	width: 50%;
+	float: left;
+	font-size: 15px;
+	text-align: center;
+    line-height: 55px;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    color: #666;
+}
+.sort-tab .popCover{
+	position: absolute;
+    top: 36px;
+    background: rgba(0,0,0,0.5);
+    right: -100%;
+    width: 100%;
+    overflow: hidden;
+    padding: 15px 17px 0 17px;
+    transition:right 0.3s linear;
+	-webkit-transition:right 0.3s linear;
+}
+.popCover .row-blick{
+	font-size: 12px;
+	padding: 15px;
+}
+.row-blick .title{
+	text-align: left;
+	line-height: 22px;
+	margin-bottom: 10px;
+}
+.popCover .row-blick .sexbtn span{
+	display: block;
+	float: left;
+	width: 15%;
+    height: 30px;
+    line-height: 30px;
+    color: #666;
+    border-radius: 3px;
+    text-align: center;
+}
+.pricebtn span{
+	display: block;
+    float: left;
+    height: 32px;
+    border-radius: 3px;
+    line-height: 32px;
+    width: 15%;
+    color: #666;
+    text-align: center;
+}
+.pricebtn span.active{
+	background: #ff9c00;
+    color: #fff;
+}
+.popCover{
+	background: #fff;
+    margin: 0 8px;
+    border-radius: 4px;
+}
+.popCover .row-blick .sexbtn .active{
+	background: #ff9c00;
+	color: #fff;
+}
+.sort-tab .arrow-text,.sort-tab .arrow-sort{
+	display: block;
+	z-index: 100;
+    background: #fff;
+    position: relative;
+    border-bottom: 1px solid #e5e5e5;
+    color: #333;
+}
+
+.sort-info-list{
+	background: #fff;
+}
+.table-view .view-cell{
+	border-bottom: 1px solid #e5e5e5;
+	display: block;
+	padding:15px;
+}
+.view-cell .media-img{
+	float: left;
+	width: 70px;
+	height: 70px;
+}
+.view-cell .media-img img{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.view-cell .media-body{
+	position: relative;
+	padding-left: 80px;
+}
+.media-body .media-left .name{
+	font-size: 14px;
+	color: #333;
+	padding-top: 5px;
+}
+.media-left .property, .media-left .info{
+	font-size: 12px;
+	color: #c6c5c5;
+	padding-top: 3px;
+}
+.media-left .evaluate{
+	background: #ff9c00 url(../img/hp.jpg) no-repeat right center;
+	background-size: 16px 16px;
+    color: #fff;
+    display: inline-block;
+    padding: 1px 15px 0 5px;
+    margin-right: 3px;
+    border-radius: 6px;
+}
+.media-left .property .sex{
+	background: url(../img/sex.jpg) no-repeat left center;
+    padding: 3px 0 3px 18px;
+    background-size: 18px 18px;
+    margin-right: 5px;
+}
+.media-left .property .sex-boy{
+	background: url(../img/boy.jpg) no-repeat left center;
+    padding-left: 20px;
+    background-size: 18px 18px;
+    margin-right: 5px;
+}
+.media-body .media-right{
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	text-align: right;
+}
+.media-right .reducible{
+	border: 1px solid #c6c5c5;
+    border-radius: 3px;
+    padding: 1px 6px;
+    margin-bottom: 3px;
+    font-size: 12px;
+    color: #c6c5c5;
+}
+.media-right .price{
+	color: #ff9c00;
+	font-size: 15px;
+	padding-top: 4px;
+}
+
+
+/*技能信息*/
+.view-group .group-info{
+	position: relative;
+	background: #ff9c00;
+	padding: 10px 15px;
+}
+.group-info .g-name{
+	font-size: 16px;
+	color: #fff;
+	padding-bottom: 8px;
+}
+.group-info .g-nub{
+	font-size: 12px;
+	color: #fff;
+}
+.group-info .right{
+	position: absolute;
+	top: 10px;
+	right: 15px;
+	text-align: right;
+}
+.group-info .s-time{
+	font-size: 16px;
+	color: #fff;
+	padding-bottom: 4px;
+}
+.group-info .s-time em{
+	font-size: 20px;
+}
+.group-info .s-good{
+	font-size: 12px;
+	color: #fff;
+	background: url(../img/hp.png) no-repeat right center;
+    padding: 2px 18px 2px 0;
+    background-size: 16px 16px;
+}
+.view-group .group-intro{
+	padding:12px 15px;
+	position: relative;
+}
+.group-intro .userimg{
+	float: left;
+	width: 60px;
+	height: 60px;
+}
+.group-intro .userimg img{
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+}
+.group-intro .user-info{
+	padding-left: 70px;
+	position: relative;
+	min-height: 60px;
+}
+
+.group-intro .foot-intro{
+	font-size: 12px;
+	color: #999;
+	line-height: 16px;
+	padding-top: 10px; 
+}
+.group-intro .user-info .name{
+	font-size: 15px;
+	color: #333;
+	padding: 9px 0;
+}
+.group-intro .g-info{
+	font-size: 12px;
+	color: #999;
+}
+.group-intro .odr-nub{
+	position: absolute;
+	top: 0;
+	right: 0;
+	text-align: right;
+}
+.group-intro .odr-bnt{
+	font-size: 15px;
+    color: #fff;
+    background: #ff9c00;
+    display: block;
+    width: 76px;
+    height: 28px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 7px;
+    margin-bottom: 7px;
+}
+.group-intro .chat-link{
+	background: url(../img/chat.jpg) no-repeat center center;
+	background-size: 24px 24px;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+.comment-area{
+	background: #f8f8f8;
+}
+.comment-area .area-sum{
+	padding: 15px;
+    font-size: 15px;
+    color: #333;
+}
+.comment-area .mui-table-view{
+	background: #f8f8f8;
+}
+.comment-area .mui-table-view:before,.comment-area .mui-table-view:after{
+	background: none;
+}
+.comment-area .mui-media-object{
+	width: 40px;
+	height: 40px;
+}
+.comment-area .mui-table-view-cell{
+	font-size: 13px;
+	color: #333;
+}
+.comment-area .mui-ellipsis{
+	color: #b4b4b4;
+	position: relative;
+}
+.mui-ellipsis .date{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.mui-ellipsis .ellipsis-grade{
+	padding-bottom: 8px;
+    padding-top: 3px;
+}
+.mui-ellipsis .ellipsis-grade span{
+	display: block;
+	float: left;
+	width: 17px;
+	height: 17px;
+	background: url(../img/y.jpg) no-repeat center center;
+	margin-right: 2px;
+    background-size: 17px 17px;
+}
+/*order*/
+.order-content .user-pic{
+	width: 75px;
+	height: 120px;
+	margin:0 auto;
+	padding-top: 25px;
+	padding-bottom: 20px;
+}
+.order-content .user-pic img{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.order-content .order-info{
+	width: 90%;
+	margin:0 auto;
+	border:1px solid #d5d5d5;
+	border-radius: 5px;
+	background: #fff;
+}
+.order-content .marbor{
+	padding: 6px 15px;
+	border-bottom: 1px solid #f9f9f9;
+	color: #333;
+}
+.order-content .remark{
+	padding: 5px 15px;
+}
+.order-content .remark .left{
+	float: left;
+    display: block;
+    font-size: 13px;
+    color: #333;
+    width: 14%;
+}
+.order-content .remark textarea{
+	font-size: 13px;
+    border: none;
+    width: 86%;
+    padding: 0;
+    margin-bottom: 0;
+}
+.order-content .play-info{
+	text-align: center;
+	color: #333;
+	background: #dedede;
+	margin-top: 40px;
+    margin-bottom: 25px;
+    line-height: 45px;
+}
+.order-content .play-info em{
+	color: #ff9c00;
+}
+.order-content .play-btn{
+	text-align:center;
+}
+.order-content .play-btn .mui-btn{
+	background: #ff9c00;
+	border: none;
+	color: #fff;
+    width: 80%;
+    height: 40px;
+    line-height: 30px;
+    font-size: 15px;
+}
+/*play*/
+.play-content{
+	background: #f9f9f9;
+}
+.play-content .cardtxt{
+	padding: 0 15px;
+	font-size: 14px;
+	color: #333;
+	line-height: 32px;
+	background: #fff;
+	border-bottom: 1px solid #e5e5e5;
+}
+.play-content .mui-card{
+	margin:0;
+	box-shadow: none;
+	margin-bottom: 10px;
+}
+.play-content .mui-radio input[type=radio]:before{
+	color: #ff9c00;
+}
+.play-content .mui-radio input[type=radio]:checked:before{
+	color: #ff9c00;
+    content: '\e442';
+}
+.play-content .mui-radio input[type=radio]{
+	top: 10px;
+}
+.play-content .WeChat:after{
+	position: absolute;
+	bottom: 0;
+	left: 70px;
+	content: "";
+	display: block;
+	clear: both;
+	border-bottom: 1px solid #e5e5e5;
+	right: 0;
+}
+.play-content .WeChat{
+	background: url(../img/WeChat.jpg) no-repeat 15px center;
+    background-size: 30px 30px;
+    padding: 17px 58px 17px 70px;
+    position: relative;
+}
+.play-content .Alipay{
+	background: url(../img/Alipay.jpg) no-repeat 15px center;
+    background-size: 30px 30px;
+    padding: 17px 58px 17px 70px;
+}
+.bottom-fxied .leftsum{
+	background: #555;
+	color: #fff;
+	font-size: 14px;
+    line-height: 40px;
+    text-indent: 15px;
+}
+.bottom-fxied .leftsum em{
+	color: #ff9c00;
+}
+.bottom-fxied .setplay{
+	background: #ff9c00;
+	color: #fff;
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	font-size: 14px;
+}
+/*chat*/
+.footer-row{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 999999;
+}

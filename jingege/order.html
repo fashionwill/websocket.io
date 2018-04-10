@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>游戏约玩触屏版</title>
+    <link rel="stylesheet" type="text/css" href="css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="http://admin.piu488.com/Public/Home/pay/css/pay.css">
+    <style>
+        .form_wrap .form_list .list_val{margin: 0;width: 200px;float: left;display: block;}
+        .form_wrap .form_list>span{display: block;}
+        .form_list{min-height: 76px;}
+        .form_wrap .form_list .list_val input{width: 200px;display: block;}
+        .form_wrap .form_list .list_title{text-align: left;margin-bottom: 10px;}
+        .form_wrap .form_list .list_val.btn{width: 100%;color: #fff;}
+    </style>
+</head>
+<body>
+<!-- <div class="webview" id="webview">
+    <div class="scrollview">
+        <div class="top-fixed">
+            <header id="header" class="">
+                <a href="#" class="mui-action-back mui-icon mui-icon-back"></a>
+                <h1 class="title">下单</h1>
+            </header>
+        </div>
+        <div class="scroll-wrap">
+            <div class="order-content">
+                <div class="user-pic"><img src="upload/pl3.jpg" alt=""></div>
+                <div class="order-info">
+                    <p class="marbor title">订单信息</p>
+                    <p class="marbor sort">游戏品种：<span>王者荣耀</span></p>
+                    <p class="marbor time">时间段：<span id="timedata"></p>
+                    <p class="marbor time">时长：<input id="sumtime" type="text" placeholder="可输入时长"></p>
+                    <div class="remark">
+                        <label class="left">备注：</label>
+                        <span id="descinfo" style="display: block;font-size: 12px;color: #999;min-height: 20px;padding-left: 42px;"></span>
+                    </div>
+                </div>
+                <div class="play-info mui-row">
+                    <span class="mui-col-xs-7">费用: <em id="price">20</em>元/小时</span>
+                    <span class="mui-col-xs-5">合计:<em>40元</em></span>
+                </div>
+                <div class="play-btn" onclick="payprice(this)"><a href="play.html" class="mui-btn">立即支付</a></div>
+            </div>
+        </div> 
+    </div>
+</div> -->
+<p style="font-size: 16px;
+    color: #333;
+    padding: 15px;color: #fff;
+    font-weight: 600;background: #1b1c20;"><a href="#" class="mui-action-back mui-icon mui-icon-back"></a>订单支付</p>
+<div id="pay_platform">
+        <div class="auto_center" style="margin-left: 0" id="auto_center">
+            <div id="orderInfo">
+                <div class="form_wrap account" style="padding: 20px;">
+                    <div class="form_list">
+                        <span class="list_title">商户订单号：</span>
+                        <span class="list_val">
+                <input name="out_trade_no" value="" maxlength="32" size="32" placeholder="长度32">
+            </span>
+                        <i>*</i><em>长度32</em>
+                    </div>
+
+                    <div class="form_list">
+                        <span class="list_title">商品描述：</span>
+                        <span class="list_val">
+                <input name="body" value="测试购买商品" maxlength="64" size="32" placeholder="长度127">
+            </span>
+                        <i>*</i><em>长度64</em>
+                    </div>
+
+                    <div class="form_list">
+                        <span class="list_title">总金额：</span>
+                        <span class="list_val">
+                <input name="total_fee" value="1" placeholder="单位：分">
+            </span>
+                        <i>*</i><em>单位：分 整型</em>
+                    </div>
+                    <div class="form_list">
+                        <span class="list_title">终端IP：</span>
+                        <span class="list_val">
+                <input name="mch_create_ip" vtype="ip" value="119.130.228.127" maxlength="16" placeholder="长度16">
+            </span>
+                        <i>*</i><em>长度16</em>
+                    </div>
+
+                    <div class="form_list" style="margin-top: 30px;">
+                        <span class="list_title"></span>
+                        <span class="list_val submit btn btn_blue">确定</span>
+                    </div>
+                </div>
+            </div>
+</div>
+</div>
+    <!-- content end -->
+
+
+
+</div>
+</body>
+
+<script src="js/mui.min.js"></script>
+<script src="js/connom.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="js/pay.js"></script>
+<!-- <script>
+    mui('.mui-scroll-wrapper').scroll();
+    document.addEventListener('touchmove',function(event){event.preventDefault()},true);
+    $.ajax({
+        type:"post",
+        url:'http://admin.piu488.com/index.php?s=/Home/Index/place',
+        dataType:"json",
+        data:[
+            {"name":"column_id","value":getQueryString("column_id")},
+            {"name":"about_id","value":getQueryString("member_id")},
+            {"name":"token","value":getCookie("token")}
+        ],
+        success:function(res){
+            if(res.code == "2"){
+                window.location = 'http://www.jingege.com/jingege/login.html';
+            }else if(res.code == "1"){
+                $(".user-pic img").attr("src",res.data.cimg);
+                $(".marbor.sort span").text(res.data.cname);
+                $("#price").text(res.data.price);
+                $("#descinfo").text(res.data.sparring_remarks);
+                $("#timedata").text(res.data.sparring_time);
+                $("#sumtime").text();
+            }else{
+                mui.toast(res.message);
+            }
+            console.log(res);
+        }
+    });
+</script> -->
+</html>

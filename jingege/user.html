@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>游戏约玩触屏版</title>
+    <link rel="stylesheet" type="text/css" href="css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/user.css">
+</head>
+<body>
+<div class="webview" id="webview">
+    <div class="scrollview">
+        <div class="top-fixed">
+            <header id="header" class="">
+                <h1 class="title">个人中心</h1>
+            </header>
+        </div>
+        <div class="scroll-wrap" style="background: #fff;">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <div class="user-content">
+                        <div class="us_header_main">
+                            <div class="us_header_img"><a href="#"><img id="img" src="img/bar_4_show.jpg" alt=""></a></div>
+                            <div class="us_header_name"><span>name</span></div>
+                        </div>
+                        <ul class="mui-table-view">
+                            <li class="mui-table-view-cell">
+                                <a href="pay.html" class="mui-navigate-right">
+                                    我的钱包
+                                    <span class="mui-badge">可提现<em id="payem">999</em>元</span>
+                                </a>
+                            </li>
+                            <li class="mui-table-view-cell">
+                                <a href="ladderorder.html" class="mui-navigate-right">
+                                    陪练订单
+                                    <span class="mui-badge">新订单<em id="orderem">999</em></span>
+                                </a>
+                            </li>
+                            <li class="mui-table-view-cell">
+                                <a href="ladderpay.html" class="mui-navigate-right">
+                                    申请陪练赚钱
+                                    <span class="mui-badge">在家也可以赚钱</span>
+                                </a>
+                            </li>
+                            <li class="mui-table-view-cell">
+                                <a href="userdata.html" class="mui-navigate-right">
+                                    个人资料
+                                    <span class="mui-badge">完成资料才可以发布陪练</span>
+                                </a>
+                            </li>
+                            <li class="mui-table-view-cell">
+                                <a href="userevaluate.html" class="mui-navigate-right">
+                                    我的评价
+                                    <span class="mui-badge">好评%<em id="evaluate">90</em></span>
+                                </a>
+                            </li>
+                            <li onclick="outlogin(this)" class="mui-table-view-cell">
+                                <a class="mui-navigate-right">
+                                    退出登录
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-fxied">
+            <footer>
+                <a href="index.html" class="home">
+                  <span class="icon icon_home"></span>
+                  <p>首页</p>
+                </a>
+                <a href="fine.html" class="fine">
+                  <span class="icon icon_fine"></span>
+                  <p>热门</p>
+                </a>
+                <a href="trip.html" class="trip">
+                  <span class="icon icon_trip"></span>
+                  <p>主播</p>
+                </a>
+                <a href="user.html" class="my active">
+                  <span class="icon icon_my"></span>
+                  <p>我的</p>
+                </a>
+            </footer>
+        </div> 
+    </div>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/connom.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+mui('.mui-scroll-wrapper').scroll();
+//退出登录
+function outlogin(e){
+    var btnArray = ['取消', '确定'];
+    mui.confirm('确认退出登录?', '温馨提示', btnArray, function(e) {
+        if (e.index == 1) {
+            setCookie('member_id','');
+            setCookie('toke','');
+            window.location = '/jingege/login.html';
+        }
+    })
+}
+function initinfo(){
+    $.ajax({
+        type:"post",
+        url:'http://admin.piu488.com/index.php?s=/Home/List/index',
+        dataType:"json",
+        data:[
+            {"name":"id","value":getCookie("member_id")},
+            {"name":"token","value":getCookie("token")}
+        ],
+        success:function(result){
+            if(result.code == "2" || result.status == "no"){
+                window.location = '/jingege/login.html';
+            }else if(result.code == "1"){
+                result[0].member_img != null ? $("#img").attr("src",result[0].member_img):"";
+                $(".us_header_name span").text(result[0].member_name);
+                $("#payem").text(result[0].wallet);
+                $("#orderem").text(result[0].definite);
+            }
+        }
+    })
+}
+initinfo();
+</script>
+</html>

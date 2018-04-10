@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>游戏约玩触屏版</title>
+    <link rel="stylesheet" type="text/css" href="css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<div class="webview" id="webview">
+    <div class="scrollview">
+        <div class="top-fixed">
+            <header id="header" class="">
+                <h1 class="title">游戏品类</h1>
+            </header>
+        </div>
+        <div class="scroll-wrap">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <div class="index-content">
+                        <section class="index_mobile advert_link">
+                        </section>
+                        <section class="index_mobile entrance_link clearfix">
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-fxied">
+            <footer>
+                <a href="index.html" class="home active">
+                  <span class="icon icon_home"></span>
+                  <p>首页</p>
+                </a>
+                <a href="fine.html" class="fine">
+                  <span class="icon icon_fine"></span>
+                  <p>热门</p>
+                </a>
+                <a href="trip.html" class="trip">
+                  <span class="icon icon_trip"></span>
+                  <p>主播</p>
+                </a>
+                <a href="user.html" class="my">
+                  <span class="icon icon_my"></span>
+                  <p>我的</p>
+                </a>
+            </footer>
+        </div> 
+    </div>
+</div>
+</body>
+
+<script src="js/mui.min.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    mui('.mui-scroll-wrapper').scroll();
+    document.addEventListener('touchmove',function(event){event.preventDefault()},true);
+    $.ajax({
+        type:"get",
+        url:'http://admin.piu488.com/index.php?s=/Home/Login/images',
+        dataType:"json",
+        success:function(result){
+            var advhtml = "",modhtml = "";
+            for(var item in result){
+                //1：大图  0：小图
+                if(result[item].size == "1"){
+                    advhtml+='<a data-id="'+result[item].cid+'" href="ladder_index.html?itemid='+result[item].cid+'"><img src="'+result[item].cimg+'" alt=""></a>';
+                }else if(result[item].size == "0"){
+                    modhtml+='<a href="ladder_index.html?itemid='+result[item].cid+'" data-id="'+result[item].cid+'" class="link_list"><div class="tab-img"><img src="'+result[item].cimg+'" alt=""></div></a>';
+                }
+            }
+            $(".advert_link").append(advhtml);
+            $(".entrance_link").append(modhtml);
+        }
+    });
+</script>
+</html>
